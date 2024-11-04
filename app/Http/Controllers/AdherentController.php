@@ -44,9 +44,10 @@ class AdherentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Adherent $adherent)
+    public function edit(Adherent $adherent, $id)
     {
-        //
+        $adherent= Adherent::findorfail($id);
+        return view('edit', compact('adherent'));
     }
 
     /**
@@ -54,7 +55,14 @@ class AdherentController extends Controller
      */
     public function update(Request $request, Adherent $adherent)
     {
-        //
+        $validatedData = $request->validate([
+        'firstname' => 'required|string|max:255',
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|max:255',
+        'phone_number' => 'required|string|max:20',
+    ]);
+        Adherent::created($request->all());
+        return redirect()->route('adherent.index');
     }
 
     /**

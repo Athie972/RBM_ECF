@@ -49,7 +49,7 @@
                         {{$adherent->phone_number}}
                     </td>
                     <td class="px-6 py-4">
-                        <form action="{{ route('adherent.destroy', ['id' => $adherent->id]) }}" method="POST">
+                        <form action="{{ route('adherent.edit', ['id' => $adherent->id]) }}" method="GET">
                             @csrf
                             <button type="submit" class="btn-edit">modifier</button>
                         </form>
